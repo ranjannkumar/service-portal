@@ -1,0 +1,13 @@
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+/* Make the first item span 2 columns if space permits, for a bento feel */
+@media (min-width: 768px) {
+  .bento-grid-item-large {
+    grid-column: span 2;
+  }
+}
