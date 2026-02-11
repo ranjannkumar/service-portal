@@ -12,13 +12,15 @@ const Hero = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
       >
-        <h1>
-          Your Trusted <span style={{ color: 'var(--color-secondary)' }}>Service Portal</span>
-          <br /> in Patna
+        <h1 style={{ color: 'white', textShadow: '0 2px 4px rgba(0,0,0,0.5)' }}>
+          Bihar's Most Trusted <span style={{ color: '#fbbf24' }}>Admission Consultancy</span>
         </h1>
-        <p>
-          Fast, reliable, and online. Apply for government forms, get certificates, 
-          and check your application status from home.
+        <p style={{ fontSize: '1.2rem', fontWeight: '500', color: '#fbbf24', textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
+          UP B.ED Special Offer: Total Fee ₹49,000 | Seat Booking ₹5,000
+        </p>
+        <p style={{ color: '#e2e8f0' }}>
+          Online Cyber Center & Photo State - Your one-stop solution for all government forms, 
+          cards, and university admissions.
         </p>
         
         <div className="hero-actions">

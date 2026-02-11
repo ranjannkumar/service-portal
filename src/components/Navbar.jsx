@@ -12,7 +12,7 @@ const Navbar = () => {
     <nav className="navbar">
       <Link to="/" className="navbar-brand">
         <Monitor size={24} className="text-blue-600" />
-        <span>Patna Service Portal</span>
+        <span>Online Cyber Center</span>
       </Link>
       
       <ul className="navbar-links">

@@ -5,35 +5,35 @@ import './BentoGrid.css';
 
 const services = [
   {
-    icon: FileText,
-    title: 'SSC & Govt Forms',
-    description: 'Complete application support for SSC, Railways, and other central government exams.',
-    className: 'bento-grid-item-large' // Optional: if we want to span
-  },
-  {
     icon: GraduationCap,
-    title: 'B.Ed. Registration',
-    description: 'Hassle-free registration and counseling form filling for B.Ed aspirants.'
-  },
-  {
-    icon: Briefcase,
-    title: 'UPSC / BPSC',
-    description: 'Expert assistance for detailed UPSC and BPSC civil services applications.'
+    title: 'UP B.Ed Admission',
+    description: 'Special Package: Total Fee ₹49,000. Seat Booking only ₹5,000. 100% Trusted.',
+    className: 'bento-grid-item-large'
   },
   {
     icon: CreditCard,
-    title: 'Pan & Aadhar',
-    description: 'Apply for new cards, corrections, or linking services quickly.'
+    title: 'Pan Card & Aadhar',
+    description: 'New Pan Card, Corrections, Aadhar Printing, and Linking services.'
+  },
+  {
+    icon: FileText,
+    title: 'Passport & VIsa',
+    description: 'Apply for Passport online. Fast and reliable service.'
+  },
+  {
+    icon: Briefcase,
+    title: 'Job Applications',
+    description: 'SSC, BPSC, Railways, Army, and all other government job forms.'
   },
   {
     icon: Printer,
-    title: 'Printing & Scanning',
-    description: 'High-quality laser printing, color scanning, and large format solutions.'
+    title: 'Printing & Xerox',
+    description: 'High-quality Color/BW Printing, Photo State, Lamination, and Scanning.'
   },
   {
     icon: Stamp,
     title: 'Certificates',
-    description: 'Caste, Income, and Residence certificate applications.'
+    description: 'Caste, Income, Residence, Birth, and Death certificates.'
   }
 ];
 
