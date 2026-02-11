@@ -16,7 +16,7 @@ const Hero = () => {
           Bihar's Most Trusted <span style={{ color: '#fbbf24' }}>Admission Consultancy</span>
         </h1>
         <p style={{ fontSize: '1.2rem', fontWeight: '500', color: '#fbbf24', textShadow: '0 1px 2px rgba(0,0,0,0.5)' }}>
-          UP B.ED Special Offer: Total Fee ₹49,000 | Seat Booking ₹5,000
+          UP B.ED Special Offer: Total Fee ₹59,000 | Seat Booking ₹10,000
         </p>
         <p style={{ color: '#e2e8f0' }}>
           Online Cyber Center & Photo State - Your one-stop solution for all government forms, 

@@ -7,7 +7,7 @@ const services = [
   {
     icon: GraduationCap,
     title: 'UP B.Ed Admission',
-    description: 'Special Package: Total Fee ₹49,000. Seat Booking only ₹5,000. 100% Trusted.',
+    description: 'Special Package: Total Fee ₹59,000. Seat Booking only ₹10,000. 100% Trusted.',
     className: 'bento-grid-item-large'
   },
   {

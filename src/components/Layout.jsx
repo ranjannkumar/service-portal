@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
         </div>
         <div className="footer-content">
           <p>© 2024 Online Cyber Center. All rights reserved.</p>
-          <p><strong>Address:</strong> Chandmari, Motihari (Near Akash Mart)</p>
+          <p><strong>Address:</strong> Chandmari, Motihari (Near Ram Sharan Gate)</p>
           <p><strong>Contact:</strong> 7321000215, 7635066677</p>
           <p><strong>Email:</strong> onlinecybercenter111@gmail.com</p>
         </div>
