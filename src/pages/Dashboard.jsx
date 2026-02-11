@@ -7,6 +7,7 @@ const Dashboard = () => {
   const [applicants, setApplicants] = useState([]);
   const [isAdding, setIsAdding] = useState(false);
   const [newApplicant, setNewApplicant] = useState({ name: '', service: 'B.Ed Registration' });
+  const [customService, setCustomService] = useState('');
   
   // Document Management State
   const [selectedApplicant, setSelectedApplicant] = useState(null);
@@ -41,13 +42,22 @@ const Dashboard = () => {
     e.preventDefault();
     if (!newApplicant.name) return;
     
+    // Use custom service name if 'Other' is selected
+    const finalService = newApplicant.service === 'Other' ? customService : newApplicant.service;
+    
+    if (!finalService) {
+      alert("Please enter a service name");
+      return;
+    }
+
     await api.addApplicant({
       name: newApplicant.name,
-      service_type: newApplicant.service
+      service_type: finalService
     });
     
     setIsAdding(false);
     setNewApplicant({ name: '', service: 'B.Ed Registration' });
+    setCustomService('');
     loadApplicants();
   };
 
@@ -143,7 +153,26 @@ const Dashboard = () => {
                 <option>UPSC / BPSC</option>
                 <option>Pan Card</option>
                 <option>General Printing</option>
+                <option value="Other">Other (Custom)</option>
               </select>
+              
+              {newApplicant.service === 'Other' && (
+                <input 
+                  type="text" 
+                  value={customService}
+                  onChange={(e) => setCustomService(e.target.value)}
+                  placeholder="Enter custom service name"
+                  style={{ 
+                    marginTop: '0.5rem', 
+                    width: '100%', 
+                    padding: '0.6rem', 
+                    borderRadius: '6px', 
+                    border: '1px solid var(--color-primary)',
+                    background: '#f8fafc'
+                  }}
+                  autoFocus
+                />
+              )}
             </div>
             <button type="submit" className="btn btn-primary">Add</button>
           </div>
