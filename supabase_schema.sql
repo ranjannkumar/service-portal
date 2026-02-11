@@ -5,7 +5,9 @@ create table applicants (
   name text not null,
   service_type text not null,
   status text default 'Pending',
-  paid boolean default false,
+  paid boolean default false, -- Kept for backward compatibility, but moving to amount_paid/due
+  amount_paid decimal default 0,
+  amount_due decimal default 0,
   documents text[] default array[]::text[], -- Keeping for backward compatibility or simple list
   created_at timestamp with time zone default timezone('utc'::text, now())
 );

@@ -98,13 +98,48 @@ const Home = () => {
           margin: '0 auto', 
           borderRadius: '16px', 
           overflow: 'hidden', 
-          boxShadow: 'var(--shadow-lg)' 
+          boxShadow: 'var(--shadow-lg)',
+          marginBottom: '2rem'
         }}>
           <img 
             src="/shop_front.png" 
             alt="Online Cyber Center Shop Front" 
             style={{ width: '100%', height: 'auto', display: 'block' }} 
           />
+        </div>
+
+        {/* Additional Shop Images Grid */}
+        <div style={{ 
+          display: 'grid', 
+          gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+          gap: '1.5rem',
+          maxWidth: '1000px',
+          margin: '0 auto'
+        }}>
+          {[
+            { src: "/shop_banner2.png", alt: "Shop Banner 2" },
+            // { src: "/visit.png", alt: "Visit Our Center 1" },
+            // { src: "/visit2.png", alt: "Visit Our Center 2" },
+            // { src: "/visit3.png.png", alt: "Visit Our Center 3" }
+          ].map((img, index) => (
+            <div key={index} style={{ 
+              borderRadius: '12px', 
+              overflow: 'hidden', 
+              boxShadow: 'var(--shadow-md)',
+              height: '200px'
+            }}>
+              <img 
+                src={img.src} 
+                alt={img.alt} 
+                style={{ 
+                  width: '100%', 
+                  height: '100%', 
+                  objectFit: 'cover',
+                  display: 'block' 
+                }} 
+              />
+            </div>
+          ))}
         </div>
       </section>
     </div>

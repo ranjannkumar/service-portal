@@ -115,17 +115,32 @@ const StatusCheck = () => {
               </div>
               <div>
                 <label style={{ fontSize: '0.85rem', color: 'var(--color-text-muted)', display: 'block' }}>Payment Status</label>
-                <div style={{ 
-                  display: 'inline-block', 
-                  padding: '0.25rem 0.75rem', 
-                  borderRadius: '999px',
-                  backgroundColor: result.paid ? '#dcfce7' : '#fee2e2',
-                  color: result.paid ? '#166534' : '#991b1b',
-                  fontWeight: '600',
-                  fontSize: '0.9rem',
-                  marginTop: '0.25rem'
-                }}>
-                  {result.paid ? 'Paid' : 'Unpaid'}
+                <div style={{ marginTop: '0.25rem' }}>
+                  {result.amount_due > 0 ? (
+                    <div style={{ 
+                      display: 'inline-block',
+                      padding: '0.5rem 1rem', 
+                      background: '#fee2e2', 
+                      color: '#991b1b', 
+                      borderRadius: '8px',
+                      fontWeight: '700',
+                      fontSize: '1.1rem'
+                    }}>
+                      Amount Due: ₹{result.amount_due}
+                    </div>
+                  ) : (
+                    <div style={{ 
+                      display: 'inline-block',
+                      padding: '0.25rem 0.75rem', 
+                      background: '#dcfce7', 
+                      color: '#166534', 
+                      borderRadius: '999px',
+                      fontWeight: '600',
+                      fontSize: '0.9rem'
+                    }}>
+                      Fully Paid
+                    </div>
+                  )}
                 </div>
               </div>
             </div>

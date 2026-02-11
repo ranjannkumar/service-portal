@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Upload, FileText, Check, X } from 'lucide-react';
+import { Plus, Upload, FileText, Check, X, Trash2 } from 'lucide-react';
 import { api } from '../services/api';
 import "../components/DashboardTable.css";
 
@@ -36,6 +36,18 @@ const Dashboard = () => {
   const handlePaymentToggle = async (id, currentStatus) => {
     await api.updateApplicant(id, { paid: !currentStatus });
     loadApplicants();
+  };
+
+  const handleDeleteApplicant = async (id) => {
+    if (window.confirm('Are you sure you want to delete this applicant? This action cannot be undone.')) {
+      try {
+        await api.deleteApplicant(id);
+        loadApplicants();
+      } catch (error) {
+        console.error("Error deleting applicant:", error);
+        alert("Failed to delete applicant");
+      }
+    }
   };
 
   const handleAddApplicant = async (e) => {
@@ -187,7 +199,8 @@ const Dashboard = () => {
               <th>Name</th>
               <th>Service</th>
               <th>Status</th>
-              <th>Payment</th>
+              <th>Paid (₹)</th>
+              <th>Due (₹)</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -214,24 +227,52 @@ const Dashboard = () => {
                   </select>
                 </td>
                 <td>
-                  <div className="payment-toggle" onClick={() => handlePaymentToggle(app.id, app.paid)}>
-                    <div className={`toggle-switch ${app.paid ? 'active' : ''}`}>
-                      <div className="toggle-thumb"></div>
-                    </div>
-                    <span style={{ fontSize: '0.85rem', color: app.paid ? '#10b981' : '#64748b' }}>
-                      {app.paid ? 'Paid' : 'Unpaid'}
-                    </span>
-                  </div>
+                  <input 
+                    type="number"
+                    defaultValue={app.amount_paid || 0}
+                    onBlur={(e) => api.updateApplicant(app.id, { amount_paid: e.target.value })}
+                    style={{ 
+                      width: '80px', 
+                      padding: '0.2rem', 
+                      borderRadius: '4px',
+                      border: '1px solid var(--color-border)'
+                    }}
+                  />
                 </td>
                 <td>
-                  <button 
-                    className="btn-icon"
-                    onClick={() => openDocumentModal(app)}
-                    title="Manage Documents"
-                    style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-primary)' }}
-                  >
-                    <FileText size={18} />
-                  </button>
+                  <input 
+                    type="number"
+                    defaultValue={app.amount_due || 0}
+                    onBlur={(e) => api.updateApplicant(app.id, { amount_due: e.target.value })}
+                    style={{ 
+                      width: '80px', 
+                      padding: '0.2rem', 
+                      borderRadius: '4px',
+                      border: '1px solid var(--color-border)',
+                      color: (app.amount_due > 0) ? '#ef4444' : 'inherit',
+                      fontWeight: (app.amount_due > 0) ? '600' : 'normal'
+                    }}
+                  />
+                </td>
+                <td>
+                  <div style={{ display: 'flex', gap: '0.5rem' }}>
+                    <button 
+                      className="btn-icon"
+                      onClick={() => openDocumentModal(app)}
+                      title="Manage Documents"
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--color-primary)' }}
+                    >
+                      <FileText size={18} />
+                    </button>
+                    <button 
+                      className="btn-icon"
+                      onClick={() => handleDeleteApplicant(app.id)}
+                      title="Delete Applicant"
+                      style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#ef4444' }}
+                    >
+                      <Trash2 size={18} />
+                    </button>
+                  </div>
                 </td>
               </tr>
             ))}

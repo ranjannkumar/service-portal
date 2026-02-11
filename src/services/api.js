@@ -55,6 +55,17 @@ export const api = {
     return data;
   },
 
+  // Delete applicant
+  deleteApplicant: async (id) => {
+    const { error } = await supabase
+      .from('applicants')
+      .delete()
+      .eq('id', id);
+    
+    if (error) throw error;
+    return true;
+  },
+
   // --- Document Management ---
 
   // Get documents for an applicant
