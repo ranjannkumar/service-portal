@@ -64,11 +64,12 @@ const Dashboard = () => {
 
     await api.addApplicant({
       name: newApplicant.name,
+      phone: newApplicant.phone,
       service_type: finalService
     });
     
     setIsAdding(false);
-    setNewApplicant({ name: '', service: 'B.Ed Registration' });
+    setNewApplicant({ name: '', phone: '', service: 'B.Ed Registration' });
     setCustomService('');
     loadApplicants();
   };
@@ -151,6 +152,16 @@ const Dashboard = () => {
                 onChange={(e) => setNewApplicant({...newApplicant, name: e.target.value})}
                 style={{ width: '100%', padding: '0.6rem', borderRadius: '6px', border: '1px solid var(--color-border)' }}
                 placeholder="Enter name"
+              />
+            </div>
+            <div>
+              <label style={{ display: 'block', marginBottom: '0.5rem', fontSize: '0.9rem', fontWeight: '500' }}>Phone Number</label>
+              <input 
+                type="text" 
+                value={newApplicant.phone || ''} 
+                onChange={(e) => setNewApplicant({...newApplicant, phone: e.target.value})}
+                style={{ width: '100%', padding: '0.6rem', borderRadius: '6px', border: '1px solid var(--color-border)' }}
+                placeholder="e.g. 9876543210"
               />
             </div>
             <div>

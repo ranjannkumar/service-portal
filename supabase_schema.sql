@@ -3,6 +3,7 @@ create table applicants (
   id uuid default gen_random_uuid() primary key,
   application_id text not null unique,
   name text not null,
+  phone text, -- Added for WhatsApp notifications
   service_type text not null,
   status text default 'Pending',
   paid boolean default false, -- Kept for backward compatibility, but moving to amount_paid/due
@@ -60,7 +61,17 @@ create policy "Allow admin read"
   on storage.objects for select
   using ( bucket_id = 'applicant_documents' and auth.role() = 'authenticated' );
 
--- Policy: Allow authenticated users (Admin) to delete files
-create policy "Allow admin delete"
-  on storage.objects for delete
-  using ( bucket_id = 'applicant_documents' and auth.role() = 'authenticated' );
+-- Whatsapp Sessions Table (for RemoteAuth)
+create table whatsapp_sessions (
+  session_id text primary key,
+  data jsonb not null,
+  updated_at timestamp with time zone default timezone('utc'::text, now())
+);
+
+-- Policy: Allow authenticated users (Admin) or Service Role to manage sessions
+alter table whatsapp_sessions enable row level security;
+
+create policy "Allow full access to whatsapp_sessions"
+  on whatsapp_sessions for all
+  using (true)
+  with check (true);
