@@ -16,6 +16,8 @@ class SupabaseStore {
     }
 
     async save(options) {
+        console.log('SupabaseStore: Saving session...', { session: options.session, hasData: !!options.sessionData });
+        
         // whatsapp-web.js passes session data as options.session (id) and data (payload)
         const { error } = await this.supabase
             .from('whatsapp_sessions')
@@ -25,6 +27,7 @@ class SupabaseStore {
             });
         
         if (error) console.error('Error saving session:', error);
+        else console.log('SupabaseStore: Session saved successfully!');
     }
 
     async extract(options) {
