@@ -79,6 +79,34 @@ app.get('/', (req, res) => {
     res.send(`WhatsApp Server is Running! Status: ${isReady ? 'Connected ✅' : 'Disconnected ❌'}`);
 });
 
+// Event: Disconnected (Logged out from phone)
+client.on('disconnected', async (reason) => {
+    console.log('Client was logged out', reason);
+    isReady = false;
+    // Destroy and re-initialize to get new QR
+    await client.destroy();
+    client.initialize();
+});
+
+// Logout Route
+app.get('/logout', async (req, res) => {
+    try {
+        await client.logout();
+        res.send(`
+            <html>
+                <body style="font-family: sans-serif; text-align: center; padding: 50px;">
+                    <h1>👋 Logged Out</h1>
+                    <p>Old number disconnected.</p>
+                    <p><a href="/link-whatsapp">Click here to link a new number</a></p>
+                </body>
+            </html>
+        `);
+    } catch (error) {
+        console.error('Error logging out:', error);
+        res.status(500).send('Error logging out. You might already be logged out.');
+    }
+});
+
 // QR Code Display Route
 app.get('/link-whatsapp', async (req, res) => {
     if (isReady) {
